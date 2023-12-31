@@ -1,3 +1,10 @@
+![](https://img.shields.io/github/languages/code-size/rpdjf/betterft?color=5BCFFF)
+
+![](https://img.shields.io/badge/windows%20terminal-4D4D4D?style=for-the-badge&logo=windows%20terminal&logoColor=white)
+![](https://img.shields.io/badge/WSL-0a97f5?style=for-the-badge&logo=linux&logoColor=white)
+
+![](	https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)
+
 # Betterft 🚀
 
 ## What's Up?
