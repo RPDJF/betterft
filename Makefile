@@ -70,30 +70,33 @@ FILES = ft_atoi \
 		ft_nbabsolute \
 		garbage_collector \
 
-CFILES = $(FILES:%=%.c)
-OFILES = $(FILES:%=%.o)
+CFILES = $(FILES:%=src/%.c)
+OFILES = $(FILES:%=obj/%.o)
 
 NAME = betterft.a
 
 all: $(NAME)
 
-%.o: %.c
+obj/%.o: src/%.c obj
 	@printf "\t🤖 Compiling $<...\r"
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@printf "\33[2K"
+
+obj:
+	@mkdir -p obj
 
 $(NAME): $(CFILES) $(OFILES)
 	@printf "\t🤖 Compiling $(NAME)...\r"
 	@ar -rc $(NAME) $(OFILES)
 	@printf "\33[2K"
-	@echo "\t[INFO] [$(NAME)]\t$(NAME) is compiled ✅"
+	@echo "\t[INFO]\t[$(NAME)]\t$(NAME) is compiled ✅"
 
 clean:
-	@rm -f $(OFILES)
-	@echo "\t[INFO] [$(NAME)]\t$(words $(OFILES)) object files deleted 🗑️"
+	@rm -rf obj
+	@echo "\t[INFO]\t[$(NAME)]\t$(words $(OFILES)) object files deleted 🗑️"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\t[INFO] [$(NAME)]\t$(NAME) is fully deleted 🗑️"
+	@echo "\t[INFO]\t[$(NAME)]\t$(NAME) is fully deleted 🗑️"
 
 re: fclean all

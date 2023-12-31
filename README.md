@@ -30,7 +30,7 @@ I'm working on it ! 👌
 
 ## Version
 
-Current vibe: 1.2 🚦
+Current vibe: 1.3 🚦
 
 ## Warning! 🚨
 
