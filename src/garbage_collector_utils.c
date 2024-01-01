@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   garbage_collector_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 12:25:04 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/01 02:47:42 by rude-jes         ###   ########.fr       */
+/*   Created: 2024/01/01 02:09:11 by rude-jes          #+#    #+#             */
+/*   Updated: 2024/01/01 02:26:00 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "betterft.h"
 
-t_list	*ft_lstnew(void *content)
+t_garbcol	*lastgarbage(t_garbcol *garb)
 {
-	t_list	*p;
-
-	p = (t_list *)galloc(sizeof(t_list));
-	if (!p)
+	if (!garb)
 		return (0);
-	p->content = content;
-	p->next = 0;
-	return (p);
+	while (garb->next)
+		garb = garb->next;
+	return (garb);
 }

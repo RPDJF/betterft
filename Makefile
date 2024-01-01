@@ -69,6 +69,7 @@ FILES = ft_atoi \
 		ft_nblowest \
 		ft_nbabsolute \
 		garbage_collector \
+		garbage_collector_utils \
 
 CFILES = $(FILES:%=src/%.c)
 OFILES = $(FILES:%=obj/%.o)
