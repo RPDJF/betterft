@@ -168,6 +168,13 @@ size_t		ft_strlen(const char *str);
 //	ft_strmapi: Applies the function 'f' to each character in the string 's',
 //	creating a new string with the results.
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+//	ft_strncat: Concatenates at most 'n' characters from the 'src' string onto
+//	the end of the 'dest' string.
+//	The 'start' parameter indicates the starting index in the 'dest' string
+//	where the concatenation should begin.
+//	The resulting string is null-terminated.
+//	Returns a pointer to the destination string.
+char		*ft_strncat(char *dest, const char *src, size_t nb);
 //	ft_strncmp: Compares the first 'n' characters of strings 's1' and 's2'.
 //	Returns 0 if the strings are identical, a positive value if s1 > s2, and
 //	a negative value if s1 < s2.
