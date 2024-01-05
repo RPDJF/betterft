@@ -16,7 +16,7 @@
 # define BUFFER_SIZE 1024
 #endif
 
-static size_t	fill_frombuffer(void **tab, ssize_t size, char *buff, ssize_t *bsize)
+static size_t	frombuffer(void **tab, ssize_t size, char *buff, ssize_t *bsize)
 {
 	size_t	new_size;
 	char	*p_buff_nl;
@@ -56,7 +56,7 @@ static size_t	fill_tab_nextline(void **tab, ssize_t size, int *fd)
 		return (0);
 	}
 	if (rbytes)
-		size = fill_frombuffer(tab, size, buffer, &rbytes);
+		size = frombuffer(tab, size, buffer, &rbytes);
 	if (ft_memchr(*tab, '\n', size))
 		return (size);
 	rbytes = read(*fd, buffer, BUFFER_SIZE);
