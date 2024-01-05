@@ -61,13 +61,14 @@ FILES = ft_atoi \
 		ft_itoa_base_un \
 		ft_itoa_base \
 		ft_itoa_un \
-		ft_exallocf \
+		ft_reallocf \
 		ft_get_next_line \
 		ft_memncat \
 		ft_memsuperclear \
 		ft_memtostr \
-		ft_nblowest \
-		ft_nbabsolute \
+		ft_max \
+		ft_min \
+		ft_absol \
 		garbage_collector \
 		garbage_collector_utils \
 

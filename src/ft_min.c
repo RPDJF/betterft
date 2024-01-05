@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 12:01:00 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
+/*   Created: 2023/11/08 16:37:59 by rude-jes          #+#    #+#             */
+/*   Updated: 2024/01/05 02:47:16 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../betterft.h"
-
-void	ft_putnbr_base(int n, char *base, int fd)
+int	ft_min(int nb1, int nb2)
 {
-	unsigned int	un;
-	size_t			baselen;
-
-	un = n;
-	if (n < 0)
-		un = -n;
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	baselen = ft_strlen(base);
-	if (un < baselen)
-		ft_putchar_fd(base[un], fd);
-	else if (un > baselen)
-	{
-		ft_putnbr_base(un / baselen, base, fd);
-		ft_putnbr_base(un % baselen, base, fd);
-	}
+	if (nb1 < nb2)
+		return (nb1);
+	return (nb2);
 }

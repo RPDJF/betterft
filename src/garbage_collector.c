@@ -6,11 +6,11 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:33:13 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/01 02:49:25 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "betterft.h"
+#include "../betterft.h"
 
 t_garbcol	**getgarbage(void)
 {

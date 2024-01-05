@@ -6,11 +6,11 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:12:13 by rude-jes          #+#    #+#             */
-/*   Updated: 2023/11/08 21:12:13 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "betterft.h"
+#include "../betterft.h"
 
 int	ft_lstgetid(t_list *list, t_list *node)
 {

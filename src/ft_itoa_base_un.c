@@ -6,13 +6,13 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:09:26 by rude-jes          #+#    #+#             */
-/*   Updated: 2023/11/09 16:45:42 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "betterft.h"
+#include "../betterft.h"
 
-char	*ft_itoa_base_un(unsigned long int n, const char *base)
+char	*ft_itoa_base_un(unsigned long n, const char *base)
 {
 	char				*p;
 	unsigned long int	temp;

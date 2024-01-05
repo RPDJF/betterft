@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exallocf.c                                      :+:      :+:    :+:   */
+/*   ft_reallocf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:17:24 by rude-jes          #+#    #+#             */
-/*   Updated: 2023/11/09 18:01:17 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "betterft.h"
+#include "../betterft.h"
 
-void	*ft_exallocf(void *ptr, size_t size, size_t newsize)
+void	*ft_reallocf(void *ptr, size_t size, size_t newsize)
 {
-	void	*p;
-	void	*p_p;
+	unsigned char	*old_alloc;
+	unsigned char	*new_alloc;
+	size_t			i;
 
-	p = galloc(newsize);
-	if (!p)
+	i = 0;
+	if (ptr == 0)
+		return (galloc(newsize));
+	old_alloc = (unsigned char *)ptr;
+	new_alloc = (unsigned char *)galloc(newsize);
+	if (new_alloc == 0)
 	{
 		gfree(ptr);
 		return (0);
 	}
-	p_p = p;
-	if (!ptr)
+	while (i < size && i < newsize)
 	{
-		while ((size_t)p_p++ - (size_t)p < newsize)
-			*((unsigned char *)(p_p - 1)) = 0;
-		return (p);
+		new_alloc[i] = old_alloc[i];
+		i++;
 	}
-	while ((size_t)p_p - (size_t)p < size)
-	{
-		*((unsigned char *)(p_p)) = *((unsigned char *)(ptr + (p_p - p)));
-		p_p++;
-	}
-	while ((size_t)p_p - (size_t)p < newsize)
-		*((unsigned char *)(p_p++)) = 0;
 	gfree(ptr);
-	return (p);
+	return (new_alloc);
 }
