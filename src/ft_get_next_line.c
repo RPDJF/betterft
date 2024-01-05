@@ -16,18 +16,7 @@
 # define BUFFER_SIZE 1024
 #endif
 
-/*
-*	trouver \n dans buffer
-*	 si \n est prsent
-*	 		aggrandir tab et concat buffer jusqu'à \n
-*			décaler buffer avec memmove
-*			changer valeur de bsize
-*	 sinon
-*			aggrandir tab et concat tout buffer
-			bsize = 0
-*	 Retourne la taille du nouveau tableau & met a jour la taille de bsize
-*/
-size_t	fill_frombuffer(void **tab, ssize_t size, char *buff, ssize_t *bsize)
+static size_t	fill_frombuffer(void **tab, ssize_t size, char *buff, ssize_t *bsize)
 {
 	size_t	new_size;
 	char	*p_buff_nl;
@@ -56,10 +45,7 @@ size_t	fill_frombuffer(void **tab, ssize_t size, char *buff, ssize_t *bsize)
 	return (new_size);
 }
 
-/*
- *	Fill tab pointer with the next line
- */
-size_t	fill_tab_nextline(void **tab, ssize_t size, int *fd)
+static size_t	fill_tab_nextline(void **tab, ssize_t size, int *fd)
 {
 	static char		buffer[BUFFER_SIZE];
 	static ssize_t	rbytes;

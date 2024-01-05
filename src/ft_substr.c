@@ -10,14 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	DESCRIPTION	The  substr() function extracts a substring from the string 's'.
-	The substring begins at position 'start' and is of maximum size 'len'.
-
-	RETURN VALUES	If the allocation fails, the function returns NULL.
-	Otherwise, it returns a pointer to the substring.
-*/
-
 #include "../betterft.h"
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)

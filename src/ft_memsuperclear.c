@@ -11,12 +11,7 @@
 /* ************************************************************************** */
 
 #include "../betterft.h"
-/*
-*	Clears gallocs containing gallocs
-*	**m is a pointer to the super galloc
-*	size is the count of inside gallocs
-*	**m entries should be pointers to galloc or null values
-*/
+
 void	ft_memsuperclear(void **m, size_t size)
 {
 	size_t	i;

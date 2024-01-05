@@ -12,7 +12,7 @@
 
 #include "../betterft.h"
 
-size_t	ft_countwords(char const *s, char c)
+static size_t	ft_countwords(char const *s, char c)
 {
 	size_t	entries;
 	int		trigger;
@@ -32,7 +32,7 @@ size_t	ft_countwords(char const *s, char c)
 	return (entries);
 }
 
-int	pushwords(char **dst, char const *src, char c)
+static int	pushwords(char **dst, char const *src, char c)
 {
 	size_t	i;
 	size_t	j;

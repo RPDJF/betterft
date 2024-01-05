@@ -12,7 +12,7 @@
 
 #include "../betterft.h"
 
-int	checkcharset(char const c, char const *set)
+static int	checkcharset(char const c, char const *set)
 {
 	while (*set)
 		if (*(set++) == c)

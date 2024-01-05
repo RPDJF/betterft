@@ -10,16 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 #include "../betterft.h"
 
-/*
-* The strncat() function appends not more than n characters from s2, and then
-* adds a terminating `\0'.
-* The source and destination strings should not overlap, as the behavior is
-* undefined.
-* The strncat() function returns the pointer s1.
-*/
 char	*ft_strncat(char *dest, const char *src, size_t nb)
 {
 	int	i;
