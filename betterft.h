@@ -36,8 +36,7 @@ typedef struct s_garbcol
 t_garbcol	**getgarbage(void);
 //	gfree: Frees the memory at the specified 'address' and removes it from the
 //	garbage collector.
-//	Returns -1 on a memory error.
-int			gfree(void *address);
+void		gfree(void *address);
 //	addgarbage: Adds a pointer 'address' to the garbage collector.
 //	Use this function only when allocating with non-betterft functions.
 //	Returns the 'address'.

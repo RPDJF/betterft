@@ -14,24 +14,17 @@
 
 t_garbcol	**getgarbage(void)
 {
-	static t_garbcol	**collector;
+	static t_garbcol	*collector;
 
-	if (!collector)
-	{
-		collector = (t_garbcol **)malloc(sizeof(t_garbcol *));
-		*collector = 0;
-	}
-	return (collector);
+	return (&collector);
 }
 
-int	gfree(void *address)
+void	gfree(void *address)
 {
 	t_garbcol	**collector;
 	t_garbcol	*todel;
 
 	collector = getgarbage();
-	if (!collector)
-		return (-1);
 	todel = *collector;
 	while (todel && todel->content != address)
 		todel = todel->next;
@@ -42,13 +35,16 @@ int	gfree(void *address)
 		if (todel->previous)
 			todel->previous->next = todel->next;
 		else if (todel->next)
+		{
 			*collector = todel->next;
+			(*collector)->previous = 0;
+		}
 		else
 			*collector = 0;
 		free(todel->content);
 		free(todel);
 	}
-	return (0);
+	return ;
 }
 
 void	*addgarbage(void *address)
@@ -58,8 +54,6 @@ void	*addgarbage(void *address)
 	t_garbcol	*last;
 
 	collector = getgarbage();
-	if (!collector)
-		return (0);
 	tmp = (t_garbcol *)malloc(sizeof(t_garbcol));
 	if (!tmp)
 		return (0);
@@ -98,5 +92,5 @@ void	cleargarbage(void)
 		free(todel);
 		todel = tmp;
 	}
-	free(collector);
+	*collector = 0;
 }
