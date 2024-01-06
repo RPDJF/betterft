@@ -21,7 +21,7 @@ If you're doing memory business without betterft (no hard feelings, seriously), 
 
 ## Version
 
-Current vibe: 1.5 🚦
+Current vibe: 1.5.1 🚦
 
 ## Warning! 🚨
 
