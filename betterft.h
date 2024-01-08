@@ -6,7 +6,7 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 13:19:26 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/05 03:16:25 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/08 05:30:05 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,10 +248,10 @@ t_list		*ft_lstrevrotate(t_list *lst);
 t_list		*ft_lstrotate(t_list *lst);
 //	ft_lstswap: Swaps the positions of the first two nodes in the list.
 t_list		*ft_lstswap(t_list *lst);
-//	ft_exallocf: Extends the memory block at 'ptr' to 'newsize' bytes.
+//	ft_reallocf: Extends the memory block at 'ptr' to 'newsize' bytes.
 //	The 'ptr' memory block is freed.
 //	Returns the pointer to the reallocated memory block.
-void		*ft_exallocf(void *ptr, size_t size, size_t newsize);
+void		*ft_reallocf(void *ptr, size_t size, size_t newsize);
 //	ft_get_next_line: Reads a line from the file descriptor 'fd' and returns
 //	it as a dynamically allocated string.
 //	Returns NULL at the end of the file or if an error occurs.
