@@ -6,87 +6,91 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:20:51 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/08 05:28:20 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../betterft.h"
+#include "get_next_line.h"
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
-#endif
-
-static size_t	frombuffer(void **tab, ssize_t size, char *buff, ssize_t *bsize)
+static char	*flush(t_gnl *gnl, char *newline, size_t line_size, size_t new_size)
 {
-	size_t	new_size;
-	char	*p_buff_nl;
-
-	p_buff_nl = ft_memchr(buff, '\n', *bsize);
-	if (p_buff_nl)
+	if (!gnl->line)
+		return (gnl->line);
+	if (gnl->line && newline)
 	{
-		new_size = size + p_buff_nl - buff + 1;
-		*tab = ft_exallocf(*tab, size, new_size);
-		if (!*tab)
-			return (0);
-		ft_memncat(*tab, size, buff, new_size - size);
-		if (buff == p_buff_nl)
-			ft_memmove(buff, p_buff_nl + 1, *bsize - 1);
-		else if (p_buff_nl < buff + *bsize - 1)
-			ft_memmove(buff, p_buff_nl + 1, *bsize - (p_buff_nl - buff) - 1);
-		*bsize -= (p_buff_nl - buff) + 1;
-		return (new_size);
+		ft_memmove(gnl->buffer, newline + 1,
+			gnl->size - ((size_t)newline - (size_t)gnl->buffer + 1));
+		gnl->buffer[gnl->size - (new_size - line_size)] = 0;
+		gnl->size = gnl->size - (new_size - line_size);
 	}
-	new_size = size + *bsize;
-	*tab = ft_exallocf(*tab, size, new_size);
-	if (!*tab)
-		return (0);
-	ft_memncat(*tab, size, buff, new_size - size);
-	*bsize = 0;
-	return (new_size);
-}
-
-static size_t	fill_tab_nextline(void **tab, ssize_t size, int *fd)
-{
-	static char		buffer[BUFFER_SIZE];
-	static ssize_t	rbytes;
-
-	if (read(*fd, 0, 0))
+	if (gnl->size < 0)
 	{
-		rbytes = 0;
-		return (0);
+		free(gnl->line);
+		gnl->line = 0;
 	}
-	if (rbytes)
-		size = frombuffer(tab, size, buffer, &rbytes);
-	if (ft_memchr(*tab, '\n', size))
-		return (size);
-	rbytes = read(*fd, buffer, BUFFER_SIZE);
-	if (!rbytes)
-		return (size);
-	else if (rbytes > 0)
-		size = fill_tab_nextline(tab, size, fd);
+	else if (newline)
+		gnl->line = ft_memtostr(gnl->line, line_size + (new_size - line_size));
 	else
-		return (0);
-	return (size);
+		gnl->line = ft_memtostr(gnl->line, new_size);
+	return (gnl->line);
 }
 
-char	*ft_get_next_line(int fd)
+static char	*join_buffer(t_gnl *gnl, size_t line_size, size_t new_size)
 {
-	char		*output;
-	ssize_t		tabsize;
-	static int	s_fd;
+	gnl->line = ft_reallocf(gnl->line, line_size, new_size);
+	if (!gnl->line)
+		return (0);
+	ft_memmove(gnl->line + line_size, gnl->buffer, new_size - line_size);
+	return (gnl->line);
+}
 
-	s_fd = fd;
-	output = 0;
-	tabsize = 0;
-	tabsize = fill_tab_nextline((void **)&output, tabsize, &s_fd);
-	if (!tabsize)
+static char	*get_line(t_gnl *gnl)
+{
+	size_t	line_size;
+	size_t	new_size;
+	char	*newline;
+
+	gnl->line = 0;
+	line_size = 0;
+	newline = 0;
+	if (!gnl->size)
+		gnl->size = read(gnl->fd, gnl->buffer, BUFFER_SIZE);
+	while (!newline && gnl->size > 0)
 	{
-		s_fd = 0;
-		gfree(output);
+		newline = ft_memchr(gnl->buffer, '\n', gnl->size);
+		if (newline)
+			new_size = line_size + ((size_t)newline - (size_t)gnl->buffer) + 1;
+		else
+			new_size = line_size + gnl->size;
+		if (!join_buffer(gnl, line_size, new_size))
+			return (0);
+		if (!newline)
+		{
+			line_size += gnl->size;
+			gnl->size = read(gnl->fd, gnl->buffer, BUFFER_SIZE);
+		}
+	}
+	return (flush(gnl, newline, line_size, new_size));
+}
+
+char	*get_next_line(int fd)
+{
+	static t_gnl	gnl[257];
+
+	if (fd < 0 || fd > 256)
+		return (0);
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0))
+	{
+		gnl[fd].buffer[0] = 0;
+		gnl[fd].size = 0;
 		return (0);
 	}
-	output = ft_memtostr(output, tabsize);
-	if (!output)
-		return (0);
-	return (output);
+	gnl[fd].fd = fd;
+	gnl[fd].line = get_line(&(gnl[fd]));
+	if (!gnl[fd].line)
+	{
+		gnl[fd].buffer[0] = 0;
+		gnl[fd].size = 0;
+	}
+	return (gnl[fd].line);
 }
