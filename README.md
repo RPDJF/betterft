@@ -19,10 +19,6 @@ So, the Garbage Collector is like the guardian of our memory party. Need to clea
 
 If you're doing memory business without betterft (no hard feelings, seriously), there's `addgarbage` to manually add stuff to the Garbage Collector's list. But honestly, all betterft allocations are already on the VIP list.
 
-## Version
-
-Current vibe: 1.5.1 🚦
-
 ## Warning! 🚨
 
 Dive into the source file for the full lowdown on how to vibe with Betterft. And don't forget to enjoy the code! 😎✌️
