@@ -43,6 +43,7 @@ FILES = ft_atoi \
 		ft_tolower \
 		ft_toupper \
 		ft_lstadd \
+		ft_lstaddr \
 		ft_lstadd_back \
 		ft_lstadd_front \
 		ft_lstclear \

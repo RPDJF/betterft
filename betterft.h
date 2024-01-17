@@ -205,6 +205,9 @@ int			ft_toupper(int c);
 //	ft_lstadd: Adds a new element with 'content' directly to the bottom of
 //	the linked list 'lst'.
 t_list		*ft_lstadd(t_list *lst, void *content);
+//      ft_lstaddr: Adds a new element with 'content' directly to the top of
+//      the linked list 'lst'.
+t_list		*ft_lstaddr(t_list *lst, void *content);
 //	ft_lstadd_back: Adds a new element 'new' to the end of the linked list
 //	'lst'.
 void		ft_lstadd_back(t_list **lst, t_list *new);
