@@ -6,11 +6,11 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:20:51 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/08 05:28:20 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:41:04 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "ft_get_next_line.h"
 
 static char	*flush(t_gnl *gnl, char *newline, size_t line_size, size_t new_size)
 {
@@ -73,7 +73,7 @@ static char	*get_line(t_gnl *gnl)
 	return (flush(gnl, newline, line_size, new_size));
 }
 
-char	*get_next_line(int fd)
+char	*ft_get_next_line(int fd)
 {
 	static t_gnl	gnl[257];
 
