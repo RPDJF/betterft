@@ -6,7 +6,7 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:25:04 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/21 02:04:17 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_list	*ft_lstnew(void *content)
 		return (0);
 	p->content = content;
 	p->next = 0;
+	p->prev = 0;
 	return (p);
 }

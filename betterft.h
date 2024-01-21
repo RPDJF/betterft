@@ -6,7 +6,7 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 13:19:26 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/08 05:30:05 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/21 02:03:49 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_list
 {
 	void				*content;
 	struct s_list		*next;
+	struct s_list		*prev;
 }						t_list;
 
 typedef struct s_garbcol
