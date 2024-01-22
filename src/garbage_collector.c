@@ -6,7 +6,7 @@
 /*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:33:13 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/05 03:19:03 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/22 00:47:55 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	*addgarbage(void *address)
 	t_garbcol	*tmp;
 	t_garbcol	*last;
 
+	if (!address)
+		return (0);
 	collector = getgarbage();
 	tmp = (t_garbcol *)malloc(sizeof(t_garbcol));
 	if (!tmp)
