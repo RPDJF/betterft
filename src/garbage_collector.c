@@ -6,7 +6,7 @@
 /*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:33:13 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/23 02:31:39 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:20:05 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ void	gfree(void *address)
 	{
 		if (todel->previous)
 			todel->previous->next = todel->next;
-		else if (todel->next)
-		{
-			*collector = todel->next;
-			(*collector)->previous = 0;
-		}
 		else
-			*collector = 0;
+			*collector = todel->next;
+		if (todel->next)
+			todel->next->previous = todel->previous;
 		free(todel->content);
 		free(todel);
 	}
