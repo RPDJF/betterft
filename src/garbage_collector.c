@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rude-jes <ruipaulo.unify@outlook.fr>       +#+  +:+       +#+        */
+/*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:33:13 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/22 00:47:55 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/01/23 02:31:39 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
