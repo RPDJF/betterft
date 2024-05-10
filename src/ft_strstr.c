@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsjoin.c                                      :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 16:23:41 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/04/14 16:14:09 by rude-jes         ###   ########.fr       */
+/*   Created: 2024/05/06 15:51:54 by rude-jes          #+#    #+#             */
+/*   Updated: 2024/05/06 15:52:35 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../betterft.h"
 
-char	*ft_strsjoin(size_t size, ...)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	bool	trigger;
-	va_list	va;
-	char	*output;
-	char	*swap;
 	size_t	i;
+	size_t	j;
+	size_t	size;
 
-	trigger = false;
-	va_start(va, size);
-	output = 0;
+	size = ft_strlen(needle);
+	if (size == 0)
+		return ((char *)haystack);
 	i = 0;
-	while (i++ < size)
+	while (haystack[i])
 	{
-		swap = output;
-		if (trigger)
-			output = ft_strjoin(output, va_arg(va, char *));
-		else
-			output = va_arg(va, char *);
-		if (!output)
-			return (0);
-		trigger = true;
-		if (i > 2)
-			gfree(swap);
+		j = 0;
+		while (needle[j] && haystack[i + j] == needle[j])
+			j++;
+		if (j == size)
+			return ((char *)haystack + i);
+		i++;
 	}
-	va_end(va);
-	return (output);
+	return (0);
 }

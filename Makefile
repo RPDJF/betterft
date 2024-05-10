@@ -26,9 +26,11 @@ FILES = ft_atoi \
 		ft_putstr_fd \
 		ft_split \
 		ft_strchr \
+		ft_strcmp \
 		ft_strdup \
 		ft_striteri \
 		ft_strjoin \
+		ft_strsepjoin \
 		ft_strsjoin \
 		ft_strlcat \
 		ft_strlcpy \
@@ -39,8 +41,11 @@ FILES = ft_atoi \
 		ft_strncat \
 		ft_strrchr \
 		ft_strreplace \
+		ft_strreplace_first \
+		ft_strstr \
 		ft_strtrim \
 		ft_substr \
+		ft_tablen \
 		ft_tolower \
 		ft_toupper \
 		ft_lstadd \
@@ -71,9 +76,11 @@ FILES = ft_atoi \
 		ft_memtostr \
 		ft_max \
 		ft_min \
+		ft_arrjoin \
 		ft_absol \
+		ft_free_tab \
 		garbage_collector \
-		garbage_collector_utils \
+		ft_joint_all
 
 CFILES = $(FILES:%=src/%.c)
 OFILES = $(FILES:%=obj/%.o)

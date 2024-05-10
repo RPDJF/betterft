@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsjoin.c                                      :+:      :+:    :+:   */
+/*   ft_strsepjoin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 16:23:41 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/04/14 16:14:09 by rude-jes         ###   ########.fr       */
+/*   Created: 2024/05/08 01:51:13 by rude-jes          #+#    #+#             */
+/*   Updated: 2024/05/08 01:53:24 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../betterft.h"
 
-char	*ft_strsjoin(size_t size, ...)
+char	*ft_strsepjoin(char **arr, char sep)
 {
-	bool	trigger;
-	va_list	va;
 	char	*output;
-	char	*swap;
-	size_t	i;
+	char	*tmp;
 
-	trigger = false;
-	va_start(va, size);
 	output = 0;
-	i = 0;
-	while (i++ < size)
+	while (*arr)
 	{
-		swap = output;
-		if (trigger)
-			output = ft_strjoin(output, va_arg(va, char *));
-		else
-			output = va_arg(va, char *);
+		tmp = output;
+		output = ft_strjoin(output, *arr);
 		if (!output)
 			return (0);
-		trigger = true;
-		if (i > 2)
-			gfree(swap);
+		if (tmp)
+			gfree(tmp);
+		if (*(arr + 1))
+		{
+			tmp = output;
+			output = ft_strjoin(output, (char []){sep, 0});
+			if (!output)
+				return (0);
+			gfree(tmp);
+		}
+		arr++;
 	}
-	va_end(va);
 	return (output);
 }

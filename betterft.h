@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   betterft.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rude-jes <rude-jes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 13:19:26 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/02/27 17:02:38 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/05/08 01:52:27 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdbool.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <string.h>
+# include <sys/wait.h>
+# include <stdio.h>
+# include <limits.h>
+# include <sys/stat.h>
+# include <signal.h>
+# include <dirent.h>
+# include <sys/types.h>
+
+# ifndef PATH_MAX
+#  define PATH_MAX 4096
+# endif
 
 typedef struct s_list
 {
@@ -29,7 +43,6 @@ typedef struct s_garbcol
 {
 	void				*content;
 	struct s_garbcol	*next;
-	struct s_garbcol	*previous;
 }					t_garbcol;
 
 //		GARBAGE COLLECTOR
@@ -114,6 +127,9 @@ void		*ft_memset(void *s, int c, size_t n);
 //	ft_memsuperclear: Frees references in the 'm' array and clears the memory
 //	itself for a total size of 'size'.
 void		ft_memsuperclear(void **m, size_t size);
+//	ft_arrjoin: Concatenates all strings in the null-terminated array 'array'
+//	into a new dynamically allocated string.
+char		*ft_arrjoin(char **array);
 //	ft_absol: Returns the absolute value of the integer 'nb'.
 int			ft_absol(int nb);
 //	ft_max: Returns the largest integer value between 'nb1' and 'nb2'.
@@ -146,11 +162,19 @@ size_t		ft_countwords(char const *s, char c);
 //	ft_strchr: Searches for the first occurrence of character 'c' in the string
 //	's' and returns its address.
 char		*ft_strchr(const char *s, int c);
+//	ft_strcmp: Compare first characters of strings 's1' and 's2'.
+//	Returns 0 if the strings are identical, a positive value if s1 > s2, and
+//	a negative value if s1 < s2.
+int			ft_strcmp(const char *s1, const char *s2);
 //	ft_strdup: Returns a dynamically allocated copy of the string 'src'.
 char		*ft_strdup(const char *src);
 //	ft_striteri: Applies the function 'f' to each character of the string 's'
 //	along with its index.
 char		ft_striteri(char *s, void (*f)(unsigned int, char *));
+//	ft_strsepjoin: Concatenates all strings in the null-terminated array 'arr'
+//	into a new dynamically allocated string, separated by the character 'sep'.
+//	Returns the resulting string in a new memory allocation.
+char		*ft_strsepjoin(char **arr, char sep);
 //	ft_strjoin: Concatenates two strings 's1' and 's2' into a new dynamically
 //	allocated string.
 char		*ft_strjoin(const char *s1, const char *s2);
@@ -195,12 +219,22 @@ char		*ft_strrchr(const char *s, int c);
 //	'new' in the string 'src'.
 //	Returns a new dynamically allocated string.
 char		*ft_strreplace(char *src, char *old, char *new);
+//	ft_strreplace: Replaces first occurrence of the string 'old' with the string
+//	'new' in the string 'src'.
+//	Returns a new dynamically allocated string.
+char		*ft_strreplace_first(char *src, char *old, char *new);
+//	ft_strstr: Searches for the first occurrence of the string 'needle' in the
+//	string 'haystack'.
+//	Returns a pointer to the first character of the found substring, or NULL
+char		*ft_strstr(const char *haystack, const char *needle);
 //	ft_strtrim: Returns a dynamically allocated string without characters from
 //	'set' at the beginning and end of 's1'.
 char		*ft_strtrim(const char *s1, const char *set);
 //	ft_substr: Returns a dynamically allocated substring of 's' starting from
 //	'start' and having a length of 'len'.
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+//	ft_tablen: Returns the number of strings in the null-terminated array 'tab'
+size_t		ft_tablen(char **tab);
 //	ft_tolower: Converts the given uppercase character 'c' to its lowercase
 //	equivalent.
 int			ft_tolower(int c);
@@ -272,5 +306,11 @@ void		*ft_memncat(void *dest, size_t start, void *src, size_t nb);
 //	dynamically allocated string.
 //	Returns the resulting string.
 char		*ft_memtostr(void *mem, size_t size);
+//	ft_free_tab: Frees the memory allocated for a null-terminated
+//	array of strings.
+//	Each string in the array must have been allocated dynamically.
+void		ft_free_tab(char **tab);
+// Split all string of **str and return a char * joind by all the string.
+char		*ft_joint_all(char **str);
 
 #endif

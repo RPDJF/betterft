@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsjoin.c                                      :+:      :+:    :+:   */
+/*   ft_arrjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 16:23:41 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/04/14 16:14:09 by rude-jes         ###   ########.fr       */
+/*   Created: 2024/05/06 16:10:07 by rude-jes          #+#    #+#             */
+/*   Updated: 2024/05/06 16:13:13 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../betterft.h"
 
-char	*ft_strsjoin(size_t size, ...)
+char	*ft_arrjoin(char **array)
 {
-	bool	trigger;
-	va_list	va;
 	char	*output;
-	char	*swap;
-	size_t	i;
+	char	*tmp;
 
-	trigger = false;
-	va_start(va, size);
-	output = 0;
-	i = 0;
-	while (i++ < size)
+	if (!array || !*array)
+		return (0);
+	output = ft_strdup(*array);
+	if (!output)
+		return (0);
+	array++;
+	while (*array)
 	{
-		swap = output;
-		if (trigger)
-			output = ft_strjoin(output, va_arg(va, char *));
-		else
-			output = va_arg(va, char *);
+		tmp = output;
+		output = ft_strjoin(output, *array);
+		gfree(tmp);
 		if (!output)
 			return (0);
-		trigger = true;
-		if (i > 2)
-			gfree(swap);
+		array++;
 	}
-	va_end(va);
 	return (output);
 }

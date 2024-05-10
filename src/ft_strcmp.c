@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   garbage_collector_utils.c                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 02:09:11 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/01/23 02:31:39 by rude-jes         ###   ########.fr       */
+/*   Created: 2023/07/14 07:02:51 by marvin            #+#    #+#             */
+/*   Updated: 2024/03/28 14:27:01 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../betterft.h"
 
-t_garbcol	*lastgarbage(t_garbcol *garb)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (!garb)
-		return (0);
-	while (garb->next)
-		garb = garb->next;
-	return (garb);
+	size_t	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
