@@ -1,6 +1,9 @@
-.PHONY = all clean fclean re secure
+# set GARBAGE_COLLECTOR to 1 to enable garbage collector
+CFLAGS = -D GARBAGE_COLLECTOR=1
+
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
+
 FILES = ft_atoi \
 		ft_atoi_base \
 		ft_bzero \
@@ -94,9 +97,6 @@ SECURED_OFILES = $(SECURED_FILES:%=obj/%.o)
 
 NAME = betterft.a
 
-# set GARBAGE_COLLECTOR to 1 to enable garbage collector
-CFLAGS += -D GARBAGE_COLLECTOR=1
-
 all: $(NAME)
 
 obj/%.o: src/%.c obj
@@ -123,8 +123,12 @@ fclean: clean
 
 re: fclean all
 
+unsecure: $(NAME)
+
 secure: $(SECURED_CFILES) $(SECURED_OFILES)
 	@printf "\t🤖 Compiling $(NAME)...\r"
 	@ar -rcs $(NAME) $(SECURED_OFILES)
 	@printf "\33[2K"
 	@echo "\t[INFO]\t[$(NAME)]\t$(NAME) (secured allocations) is compiled ✅"
+
+.PHONY = all clean fclean re secure unsecure
