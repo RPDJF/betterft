@@ -6,7 +6,7 @@
 /*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 13:19:26 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/05/10 18:58:16 by rude-jes         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:43:24 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,6 @@ void		*ft_memset(void *s, int c, size_t n);
 //	ft_memsuperclear: Frees references in the 'm' array and clears the memory
 //	itself for a total size of 'size'.
 void		ft_memsuperclear(void **m, size_t size);
-//	ft_arrjoin: Concatenates all strings in the null-terminated array 'array'
-//	into a new dynamically allocated string.
-char		*ft_arrjoin(char **array);
 //	ft_absol: Returns the absolute value of the integer 'nb'.
 int			ft_absol(int nb);
 //	ft_max: Returns the largest integer value between 'nb1' and 'nb2'.
@@ -235,6 +232,12 @@ char		*ft_strtrim(const char *s1, const char *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 //	ft_tablen: Returns the number of strings in the null-terminated array 'tab'
 size_t		ft_tablen(char **tab);
+//	ft_tabadd:	Reallocf char **tab to fit in str, the old tab is freed.
+//	Returns a new dynamically allocated string array.
+char		**ft_tabadd(char **tab, char *str);
+//	ft_tabjoin: Concatenates all strings in the null-terminated array 'array'
+//	into a new dynamically allocated string.
+char		*ft_tabjoin(char **array);
 //	ft_tolower: Converts the given uppercase character 'c' to its lowercase
 //	equivalent.
 int			ft_tolower(int c);
@@ -244,8 +247,8 @@ int			ft_toupper(int c);
 //	ft_lstadd: Adds a new element with 'content' directly to the bottom of
 //	the linked list 'lst'.
 t_list		*ft_lstadd(t_list *lst, void *content);
-//      ft_lstaddr: Adds a new element with 'content' directly to the top of
-//      the linked list 'lst'.
+//	ft_lstaddr: Adds a new element with 'content' directly to the top of
+//	the linked list 'lst'.
 t_list		*ft_lstaddr(t_list *lst, void *content);
 //	ft_lstadd_back: Adds a new element 'new' to the end of the linked list
 //	'lst'.

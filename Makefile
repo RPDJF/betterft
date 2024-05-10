@@ -79,7 +79,8 @@ FILES = ft_atoi \
 		ft_memtostr \
 		ft_max \
 		ft_min \
-		ft_arrjoin \
+		ft_tabadd \
+		ft_tabjoin \
 		ft_absol \
 		ft_free_tab \
 		garbage_collector \

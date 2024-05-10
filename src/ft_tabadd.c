@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrjoin.c                                       :+:      :+:    :+:   */
+/*   ft_tabadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rude-jes <rude-jes@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 16:10:07 by rude-jes          #+#    #+#             */
-/*   Updated: 2024/05/06 16:13:13 by rude-jes         ###   ########.fr       */
+/*   Created: 2024/05/10 20:25:15 by rude-jes          #+#    #+#             */
+/*   Updated: 2024/05/10 20:38:13 by rude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../betterft.h"
 
-char	*ft_arrjoin(char **array)
+char	**ft_tabadd(char **tab, char *str)
 {
-	char	*output;
-	char	*tmp;
+	size_t	len;
 
-	if (!array || !*array)
-		return (0);
-	output = ft_strdup(*array);
-	if (!output)
-		return (0);
-	array++;
-	while (*array)
+	if (!tab)
 	{
-		tmp = output;
-		output = ft_strjoin(output, *array);
-		gfree(tmp);
-		if (!output)
+		tab = galloc(2 * sizeof(char *));
+		if (!tab)
 			return (0);
-		array++;
+		tab[0] = str;
+		tab[1] = 0;
+		return (tab);
 	}
-	return (output);
+	len = ft_tablen(tab);
+	tab = ft_reallocf(tab, len * sizeof(char *), (len + 2) * sizeof(char *));
+	if (!tab)
+		return (0);
+	tab[len] = str;
+	tab[len + 1] = 0;
+	return (tab);
 }
