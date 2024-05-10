@@ -1,4 +1,4 @@
-.PHONY = all clean fclean re
+.PHONY = all clean fclean re secure
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 FILES = ft_atoi \
@@ -80,12 +80,22 @@ FILES = ft_atoi \
 		ft_absol \
 		ft_free_tab \
 		garbage_collector \
-		ft_joint_all
+		garbage_utils \
+		ft_joint_all \
 
-CFILES = $(FILES:%=src/%.c)
-OFILES = $(FILES:%=obj/%.o)
+SECURED_FILES = $(FILES) garbage_galloc_secure
+UNSECURED_FILES = $(FILES) garbage_galloc
+
+CFILES = $(UNSECURED_FILES:%=src/%.c)
+OFILES = $(UNSECURED_FILES:%=obj/%.o)
+
+SECURED_CFILES = $(SECURED_FILES:%=src/%.c)
+SECURED_OFILES = $(SECURED_FILES:%=obj/%.o)
 
 NAME = betterft.a
+
+# set GARBAGE_COLLECTOR to 1 to enable garbage collector
+CFLAGS += -D GARBAGE_COLLECTOR=1
 
 all: $(NAME)
 
@@ -101,7 +111,7 @@ $(NAME): $(CFILES) $(OFILES)
 	@printf "\t🤖 Compiling $(NAME)...\r"
 	@ar -rc $(NAME) $(OFILES)
 	@printf "\33[2K"
-	@echo "\t[INFO]\t[$(NAME)]\t$(NAME) is compiled ✅"
+	@echo "\t[INFO]\t[$(NAME)]\t$(NAME) (unsecured galloc) is compiled ✅"
 
 clean:
 	@rm -rf obj
@@ -112,3 +122,9 @@ fclean: clean
 	@echo "\t[INFO]\t[$(NAME)]\t$(NAME) is fully deleted 🗑️"
 
 re: fclean all
+
+secure: $(SECURED_CFILES) $(SECURED_OFILES)
+	@printf "\t🤖 Compiling $(NAME)...\r"
+	@ar -rcs $(NAME) $(SECURED_OFILES)
+	@printf "\33[2K"
+	@echo "\t[INFO]\t[$(NAME)]\t$(NAME) (secured allocations) is compiled ✅"
